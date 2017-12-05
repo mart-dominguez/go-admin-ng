@@ -9,7 +9,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class ClientesHttpServiceService {
 
-  private server:string="http://localhost:8080/api/";
+  private server:string="http://localhost:9010/go-admin-1.0-SNAPSHOT/api/";
   private clientes:Cliente[]=[];
 
   //private clienteUpdated = new Subject<Cliente>();
@@ -21,6 +21,8 @@ export class ClientesHttpServiceService {
 
 
   agregar(unCliente:Cliente): Observable<any>{
+    console.log(this.server+"cliente");
+    console.log(unCliente);
     return  this.http.post(this.server+"cliente", unCliente).
       flatMap(z => {
         console.log(z);
@@ -44,7 +46,7 @@ export class ClientesHttpServiceService {
   }
 
   actualizar(unCliente:Cliente):Observable<any>{
-    return  this.http.post(this.server+"cliente/"+unCliente.id, unCliente).
+    return  this.http.put(this.server+"cliente/"+unCliente.id, unCliente).
     flatMap(z => {
       console.log(z);
       this.clienteUpdated.next(this.clientes);

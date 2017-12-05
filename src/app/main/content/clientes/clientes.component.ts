@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild , ViewEncapsulation} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Cliente } from './cliente.model';
 import { MatDialog } from '@angular/material';
@@ -10,7 +10,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.scss']
+  styleUrls: ['./clientes.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  animations   : fuseAnimations
 })
 export class ClientesComponent implements OnInit {
   dialogRef: any;
@@ -35,8 +37,9 @@ export class ClientesComponent implements OnInit {
                 {
                     return;
                 }
-
-                this.miServicio.actualizar(response.getRawValue());
+                console.log("DATOS GUARDAR");
+                console.log(response.getRawValue());
+                this.miServicio.agregar(response.getRawValue());
 
             });
 
