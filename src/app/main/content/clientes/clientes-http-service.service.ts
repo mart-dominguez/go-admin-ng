@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Cliente } from './cliente.model';
 import { Observable } from 'rxjs/Observable'
 //import { ClienteAbstractService } from './Cliente-abstract-service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/Rx';
 
@@ -23,6 +23,9 @@ export class ClientesHttpServiceService {
   agregar(unCliente:Cliente): Observable<any>{
     console.log(this.server+"cliente");
     console.log(unCliente);
+    // esta definido?????
+    console.log(" esta definido?????");
+    console.log(this.http);
     return  this.http.post(this.server+"cliente", unCliente).
       flatMap(z => {
         console.log(z);
